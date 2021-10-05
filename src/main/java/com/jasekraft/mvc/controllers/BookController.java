@@ -1,5 +1,8 @@
 package com.jasekraft.mvc.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +26,12 @@ public class BookController {
 		Book book = bookService.findBook(id);
 		model.addAttribute("book", book);
 		return "showBook.jsp";
-		
+	}
+	
+	@RequestMapping("/books")
+	public String showAllBooks(Model model) {
+		List<Book> books = bookService.allBooks();
+		model.addAttribute("books", books);
+		return "showAllBooks.jsp";
 	}
 }
